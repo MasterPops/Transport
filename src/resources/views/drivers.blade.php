@@ -67,56 +67,79 @@
 					</div>
 				</div>
 				<div class="col-6">
-                    <a role="button" href="#" class="btn btn-outline-dark btn-block" style="max-width: 850px; margin-bottom: 20px">Добавить</a>
+                    <button class="btn btn-outline-dark btn-block" type="button" data-toggle="collapse" data-target="#collapseAdd" aria-expanded="false" aria-controls="collapseAdd" style="max-width: 850px; margin-bottom: 20px">
+    					Добавить
+  					</button>
+					<div class="collapse mb-4" id="collapseAdd">
+ 						<div class="card card-body" style="max-width: 850px">
+ 							<form method="POST" action="/drivers/add">
+ 								@csrf
+ 								<div class="row">
+ 									<div class="col-6">
+ 										<div class="form-group">
+    										<input type="text" class="form-control" name="lastname" placeholder="Фамилия">
+  										</div>
+ 									</div>
+ 									<div class="col-6">
+ 										<div class="form-group">
+    										<input type="text" class="form-control" name="name" placeholder="Имя">
+  										</div>
+ 									</div>
+ 								</div>
+ 								<div class="row">
+ 									<div class="col-12">
+ 										<div class="form-group">
+    										<input type="text" class="form-control" name="patronymic" placeholder="Отчество">
+  										</div>
+ 									</div>
+ 								</div>
+ 								<div class="row">
+ 									<div class="col-12">
+ 										<div class="form-group">
+    										<button class="btn btn-primary btn-block" type="submit">Добавить</button>
+  										</div>
+ 									</div>
+ 								</div>
+ 							</form>
+  						</div>
+					</div>
 					<div class="row ">
 						<div class="col-12 m10 ">
-
-							<!--Карточка-->
-                            <div class="card mb-3" style="max-width: 850px">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4">
-                                        <img src="{{asset('images/standart-driver-icon.png')}}" class="card-img" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Фамилия Имя Отчество</h5>
-
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    Принят на работу
-                                                </div>
-                                                <div class="col-7">
-                                                    число
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    Рейтинг:
-                                                </div>
-                                                <div class="col-7">
-                                                    5.0
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    Статус:
-                                                </div>
-                                                <div class="col-7">
-                                                    <p class="text-success">Свободен</p>
-                                                </div>
-                                            </div>
-                                            <div class="row justify-content-end">
-                                                <div class="col-auto">
-                                                    <a href=""class="setting-auto"></a> 
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Карточка-->							
+							@foreach($drivers as $driver)
+                            	<div class="card mb-3" style="max-width: 850px">
+                                	<div class="row no-gutters">
+                                    	<div class="col-md-4">
+                                        	<img src="{{asset('images/standart-driver-icon.png')}}" class="card-img" alt="...">
+                                    	</div>
+                                    	<div class="col-md-8">
+                                        	<div class="card-body">
+                                            	<h5 class="card-title">{{$driver->lastname}} {{$driver->name}} {{$driver->patronymic}}</h5>
+                                            	<div class="row">
+                                                	<div class="col-5">
+                                                    	Принят на работу
+                                                	</div>
+                                                	<div class="col-7">
+                                                    	{{$driver->created_at}}
+                                                	</div>
+                                            	</div>
+                                            	<div class="row">
+                                                	<div class="col-5">
+                                                    	Статус:
+                                                	</div>
+                                                	<div class="col-7">
+                                                    	<p class="text-success">{{$driver->getStatus['status']}}</p>
+                                                	</div>
+                                            	</div>
+                                            	<div class="row justify-content-end">
+                                                	<div class="col-auto">
+                                                    	<a href=""class="setting-auto"></a> 
+                                                	</div>
+                                            	</div>
+                                        	</div>
+                                    	</div>
+                                	</div>
+                            	</div>			
+							@endforeach			
 						</div>
 					</div>
 				</div>

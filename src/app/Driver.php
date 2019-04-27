@@ -10,4 +10,9 @@ class Driver extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+
+    public function getStatus()
+    {
+        return $this->belongsTo('App\Statuses_driver','status');
+    }
 }

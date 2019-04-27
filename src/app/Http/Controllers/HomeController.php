@@ -35,10 +35,6 @@ class HomeController extends Controller
         $trips = $trips->where('status', 2)->count();
         return view('home')->with('cars', $cars)->with('drivers', $drivers)->with('trips', $trips);
     }
-    public function drivers()
-    {
-        return view('drivers');
-    }
     public function trip()
     {
         return view('trip');

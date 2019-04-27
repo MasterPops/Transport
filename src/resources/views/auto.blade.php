@@ -72,7 +72,7 @@
     					Добавить
   					</button>
 					<div class="collapse mb-4" id="collapseAdd">
- 						<div class="card card-body">
+ 						<div class="card card-body" style="max-width: 850px">
  							<form method="POST" action="/auto/add">
  								@csrf
  								<div class="row">
