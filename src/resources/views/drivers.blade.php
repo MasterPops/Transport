@@ -127,12 +127,47 @@
                                                     	Статус:
                                                 	</div>
                                                 	<div class="col-7">
-                                                    	<p class="text-success">{{$driver->getStatus['status']}}</p>
+                                                		@if($driver->status == 1)
+        													<p class="text-success">{{$driver->getStatus['status']}}</p>
+        												@endif
+        												@if($driver->status == 2)
+        													<p class="text-primary">{{$driver->getStatus['status']}}</p>
+        												@endif
+        												@if($driver->status == 3)
+        													<p class="text-warning">{{$driver->getStatus['status']}}</p>
+        												@endif
+        												@if($driver->status == 4)
+        													<p class="text-danger">{{$driver->getStatus['status']}}</p>
+        												@endif
                                                 	</div>
                                             	</div>
-                                            	<div class="row justify-content-end">
-                                                	<div class="col-auto">
-                                                    	<a href=""class="setting-auto"></a> 
+                                            	<div class="row justify-content-between">
+                                                	<div class="col-6">
+                                                		@if($driver->status != 2)
+                                                			<form method="POST" action="/drivers/status">
+                                                				<input type="hidden" name="driverid" value="{{$driver->id}}">
+                                                				@csrf
+                                                				<div class="form-group">
+    																<label>Сменить статус</label>
+    																<select class="form-control" name="status" onchange="this.form.submit()">
+    																	<option>{{$driver->getStatus['status']}}</option>
+    																	@foreach($statuses as $status)
+    																		@if($driver->status != $status->id && $status->id != 2)
+      																			<option>{{$status->status}}</option>
+        																	@endif
+    																	@endforeach
+    																</select>
+  																</div>
+                                                			</form>	
+                                                		@endif
+                                                	</div>
+                                                	<div class="col-2 mr-5 mt-4">
+                                                		@if($driver->status != 2)
+                                                			<form method="POST" action="drivers/del">
+                                                				@csrf
+                                                				<button class="btn btn-danger" type="submit" name="driverid" value="{{$driver->id}}">Уволить</button>
+                                                			</form>
+                                                		@endif
                                                 	</div>
                                             	</div>
                                         	</div>
