@@ -1,0 +1,153 @@
+body
+{
+	background-color: #f1f4fa;
+	height: 100%;
+	padding-bottom: 150px; 
+}
+html
+{
+	position:relative;
+	min-height:100%;
+}
+a
+{ 
+    text-decoration: none;
+} 
+a:hover 
+{
+	text-decoration: none;
+}
+
+.nav-bar
+{
+	background-color: #f1f4fa;
+}
+
+footer
+{
+	background-color: #d9d9d9;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	padding-top: 15px;
+}
+
+.top-bar
+{
+	background-color: #4a4a4a;
+	width: 100vw;
+	height: auto;
+	position: relative;
+}
+
+.tile
+{
+	height: 150px;
+	width: 150px;
+	background-color: #287bbd;
+	margin: 0 10px 25px 10px;
+
+}
+
+.tile:hover
+{
+	animation-name: tile-color;
+	animation-duration: 2s;
+	animation-timing-function: ease;
+	animation-fill-mode: forwards;
+}
+
+.active-tile
+{
+	background-color: #fea500;
+}
+
+@keyframes tile-color
+{
+	100%
+	{
+		background-color: #fea500;
+	}
+}
+
+.img-tile
+{
+	padding: 20%;
+	margin-top: 5%;
+}
+
+.holder
+{
+	position:relative;   
+}
+
+.block
+{
+    position:absolute;
+    width: auto;
+    height: 100%;
+    left:15px;
+    bottom:0%;
+    right:15px;
+    background:rgba(0,0,0, 0.5);
+    display:none;
+}
+
+.holder:hover .block
+{
+    display:block;
+}
+
+.m15
+{
+	margin-bottom: 15px;
+}
+
+.m10
+{
+	margin-right: 10px;
+}
+
+html { overflow-x:  hidden; }
+
+.fix
+{
+	position: fixed;
+	width: 40%;
+	margin-left: 6%;
+
+}
+
+.mobile-buttons
+{
+	display: none;
+	margin-bottom: 5%;
+}
+
+.setting-auto
+{
+	display: block;
+	background: url(img/setting-auto.png);
+	width: 20px;
+	height: 20px;
+}
+
+.setting-auto:hover
+{
+	background: url(img/setting-auto-fill.png);
+}
+
+
+
+@media only screen and (max-width: 870px) 
+{
+	.tile
+  	{
+    	display: none;
+  	}
+  	.mobile-buttons
+	{
+		display: inline;
+	}
+}
+
