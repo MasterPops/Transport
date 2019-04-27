@@ -25,7 +25,7 @@ Route::get('/drivers', 'DriverController@index');
 Route::post('/drivers/add', 'DriverController@add');
 Route::post('/drivers/status', 'DriverController@status');
 Route::post('/drivers/del', 'DriverController@del');
-Route::get('/trip', 'HomeController@trip');
+Route::get('/trip', 'TripController@index');
 Route::get('/support', 'HomeController@support');
 Route::get('/profile', 'EditUser@index');
 Route::post('profile/rename', 'EditUser@rename');
