@@ -55,6 +55,13 @@
 									</a>
 								</div>
 								<a role="button" href="/trip" class="btn btn-outline-primary mobile-buttons btn-block">Поездки</a>
+                                <div class="col-auto tile">
+                                    <a href="/customers">
+                                        <img src="{{asset('images/customers.png')}}" class="img-tile img-fluid"/>
+                                        <h6 class="text-center" style="color: white;">Заказчики</h6>
+                                    </a>
+                                </div>
+                                <a role="button" href="trip.html" class="btn btn-outline-primary mobile-buttons btn-block">Заказчики</a>
 								<div class="col-auto tile">
 									<a href="/statistic">
 										<img src="{{asset('images/statistic-icon.png')}}" class="img-tile img-fluid"/>

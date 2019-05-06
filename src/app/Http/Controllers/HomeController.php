@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         $cars = Car::where('user', Auth::user()->id)->count();
         $drivers = Driver::where('user', Auth::user()->id)->count();
-        $trips = Trip::where('user', Auth::user()->id)->get();
+        $trips = Car::where('user', Auth::user()->id)->get();
         $trips = $trips->where('status', 2)->count();
         return view('home')->with('cars', $cars)->with('drivers', $drivers)->with('trips', $trips);
     }

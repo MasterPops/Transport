@@ -55,6 +55,13 @@
 									</a>
 								</div>
 								<a role="button" href="/trip" class="btn btn-warning mobile-buttons btn-block">Поездки</a>
+                                <div class="col-auto tile">
+                                    <a href="/customers">
+                                        <img src="{{asset('images/customers.png')}}" class="img-tile img-fluid"/>
+                                        <h6 class="text-center" style="color: white;">Заказчики</h6>
+                                    </a>
+                                </div>
+                                <a role="button" href="trip.html" class="btn btn-outline-primary mobile-buttons btn-block">Заказчики</a>
 								<div class="col-auto tile">
 									<a href="/statistic">
 										<img src="{{asset('images/statistic-icon.png')}}" class="img-tile img-fluid"/>
@@ -67,7 +74,54 @@
 					</div>
 				</div>
 				<div class="col-6" >
-                    <a role="button" href="#" class="btn btn-outline-dark btn-block" style="max-width: 850px; margin-bottom: 20px">Добавить</a>
+                    <button class="btn btn-outline-dark btn-block" type="button" data-toggle="collapse" data-target="#collapseAdd" aria-expanded="false" aria-controls="collapseAdd" style="max-width: 850px; margin-bottom: 20px">
+                        Добавить
+                    </button>
+                    <div class="collapse" id="collapseAdd" style="max-width: 850px; margin-bottom: 20px">
+                        <div class="card card-body">
+                            <form method="POST" action="/trip/add">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>Автомобиль</label>
+                                            <select class="form-control" name="auto">
+                                                @foreach($cars as $car)
+                                                    <option>{{$car->brand}} {{$car->model}} {{$car->number}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>Водитель</label>
+                                            <select class="form-control" name="driver">
+                                                @foreach($drivers as $driver)
+                                                    <option>{{$driver->lastname}} {{$driver->name}} {{$driver->patronymic}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label>Заказчик</label>
+                                            <select class="form-control" name="customer">
+                                                <option>1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" placeholder="Текущий пробег" name="before">
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" placeholder="Цена за км" name="price">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-block" type="submit">Добавить</button>
+                            </form>
+                        </div>
+                    </div>
                     <!--
                     <div class="row">
                     	<div class="col-12" style="margin-bottom: 20px">
