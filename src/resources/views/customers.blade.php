@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Поездки</title>
+		<title>Заказчики</title>
 		<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
@@ -78,6 +78,7 @@
                     <div class="collapse" id="collapseAdd" style="max-width: 850px; margin-bottom: 20px">
   						<div class="card card-body">
     						<form method="POST" action="/customers/add">
+    							@csrf
     							<div class="form-group">
     								<input type="text" class="form-control" placeholder="Наименование заказчика" name="name">
     								<button type="submit" class="btn btn-block btn-primary mt-4">Добавить</button>
@@ -90,19 +91,20 @@
                     		<table class="table">
   								<thead>
     								<tr>
-      									<th scope="col">#</th>
       									<th scope="col">Наименование</th>
       									<th scope="col">Действия</th>
     								</tr>
   								</thead>
   								<tbody>
-  									<form method="POST" action="/customers/del">
-  										<tr>
-      										<th scope="row">1</th>
-      										<td>ООО "УНАС"</td>
-      										<td><button type="submit" class="btn btn-sm btn-danger">Удалить</button></td>
-    									</tr>
-  									</form>
+  									@foreach($customers as $customer)
+  										<form method="POST" action="/customers/del">
+  											@csrf
+  											<tr>
+      											<td>{{$customer->name}}</td>
+      											<td><button type="submit" class="btn btn-sm btn-danger" name="identify" value="{{$customer->id}}">Удалить</button></td>
+    										</tr>
+  										</form>
+  									@endforeach  									
   								</tbody>
 							</table>
                     	</div>

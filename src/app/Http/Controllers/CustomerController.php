@@ -22,15 +22,18 @@ class CustomerController extends Controller
     public function add(Request $request)
     {
     	$this->validate($request, [
-                    'auto' => 'required',
-                    'driver' => 'required',
-                    'customer' => 'required',
-                    'before' => 'required',
-                    'price' => 'required'
+                    'name' => 'required'
                 ]);
-    	$trip = new Trip();
-    	$trip->user = Auth::User()->id;
-    	$driver->save();
-    	return redirect()->action('DriverController@index');
+    	$customer = new Customer();
+    	$customer->user = Auth::User()->id;
+    	$customer->name = $request->name;
+    	$customer->save();
+    	return redirect()->action('CustomerController@index');
+    }
+
+    public function del(Request $request)
+    {
+    	$customer = Customer::destroy($request->identify);
+    	return redirect()->action('CustomerController@index');
     }
 }

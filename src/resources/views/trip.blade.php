@@ -80,13 +80,14 @@
                     <div class="collapse" id="collapseAdd" style="max-width: 850px; margin-bottom: 20px">
                         <div class="card card-body">
                             <form method="POST" action="/trip/add">
+                                @csrf
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-12">
                                             <label>Автомобиль</label>
                                             <select class="form-control" name="auto">
                                                 @foreach($cars as $car)
-                                                    <option>{{$car->brand}} {{$car->model}} {{$car->number}}</option>
+                                                    <option value="{{$car->id}}">{{$car->brand}} {{$car->model}} {{$car->number}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -96,7 +97,7 @@
                                             <label>Водитель</label>
                                             <select class="form-control" name="driver">
                                                 @foreach($drivers as $driver)
-                                                    <option>{{$driver->lastname}} {{$driver->name}} {{$driver->patronymic}}</option>
+                                                    <option value="{{$driver->id}}">{{$driver->lastname}} {{$driver->name}} {{$driver->patronymic}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -105,7 +106,9 @@
                                         <div class="col-12">
                                             <label>Заказчик</label>
                                             <select class="form-control" name="customer">
-                                                <option>1</option>
+                                                @foreach($customers as $customer)
+                                                    <option value="{{$customer->id}}">{{$customer->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -170,6 +173,26 @@
                                                         <p>{{$trip->mileage_before}} км</p>
                                                     </div>
                                                 </div>
+                                                @if($trip->status == 2)
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            Пробег после поездки:
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <p>{{$trip->mileage_after}} км</p>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                @if($trip->status == 2)
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            Расстояние:
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <p>{{$trip->mileage_after - $trip->mileage_before}} км</p>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                                 <div class="row">
                                                     <div class="col-12 col-md-6">
                                                         Цена за км:
@@ -178,11 +201,53 @@
                                                         <p>{{$trip->price}} руб</p>
                                                     </div>
                                                 </div>
+                                                @if($trip->status == 2)
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            Сумма:
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <p>{{$trip->sum}} руб</p>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                                 <div class="row">
-                                                    <div class="col-12">
-                                                        <a role="button" href="#" class="btn btn-outline-danger btn-block">Завершить</a>
+                                                    <div class="col-12 col-md-6">
+                                                        Начало поездки:
+                                                    </div>
+                                                    <div class="col-12 col-md-6">
+                                                        <p>{{$trip->created_at}}</p>
                                                     </div>
                                                 </div>
+                                                @if($trip->status == 2)
+                                                    <div class="row">
+                                                        <div class="col-12 col-md-6">
+                                                            Окончание поездки:
+                                                        </div>
+                                                        <div class="col-12 col-md-6">
+                                                            <p>{{$trip->updated_at}}</p>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                @if($trip->status == 1)
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <button class="btn btn-outline-danger btn-block" type="button" data-toggle="collapse" data-target="#collapseend" aria-expanded="false" aria-controls="collapseend">Завершить</button>
+                                                            <div class="collapse mt-3" id="collapseend">
+                                                                <div class="card card-body">
+                                                                    <form method="POST" action="/trip/end">
+                                                                        @csrf
+                                                                        <div class="form-group">
+                                                                            <input type="hidden" class="form-control" name="identify" value="{{$trip->id}}">
+                                                                            <input type="text" class="form-control" placeholder="Текущий пробег" name="after">
+                                                                            <button type="submit" class="btn btn-block btn-primary mt-4">Отправить</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

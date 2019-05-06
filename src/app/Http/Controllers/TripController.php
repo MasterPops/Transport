@@ -22,7 +22,7 @@ class TripController extends Controller
 
     public function index()
     {
-    	$trips = Trip::where('user', Auth::user()->id)->get();
+    	$trips = Trip::where('user', Auth::user()->id)->orderBy('id','desc')->get();
     	$cars = Car::where('user',Auth::user()->id)->get();
     	$cars = $cars->where('status', 1);
     	$drivers = Driver::where('user',Auth::user()->id)->get();
@@ -42,7 +42,37 @@ class TripController extends Controller
                 ]);
     	$trip = new Trip();
     	$trip->user = Auth::User()->id;
+    	$trip->driver = $request->driver;
+    	$driver = Driver::find($request->driver);
+    	$driver->status = 2;
     	$driver->save();
-    	return redirect()->action('DriverController@index');
+    	$trip->car = $request->auto;
+    	$car = Car::find($request->auto);
+    	$car->status = 2;
+    	$car->save();
+    	$trip->customer = $request->customer;
+    	$trip->mileage_before = $request->before;
+    	$trip->price = $request->price;
+    	$trip->save();
+    	return redirect()->action('TripController@index');
+    }
+
+    public function end(Request $request)
+    {
+    	$this->validate($request, [
+                    'after' => 'required'
+                ]);
+    	$trip = Trip::find($request->identify);
+    	$trip->mileage_after = $request->after;
+    	$trip->sum = ($trip->mileage_after - $trip->before) * $trip->price;
+    	$trip->status = 2;
+    	$driver = Driver::find($trip->driver);
+    	$driver->status = 1;
+    	$driver->save();
+    	$car = Car::find($trip->car);
+    	$car->status = 1;
+    	$car->save();
+    	$trip->save();
+    	return redirect()->action('TripController@index');
     }
 }
