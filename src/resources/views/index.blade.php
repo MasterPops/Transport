@@ -163,33 +163,28 @@
 			</div>
 			<div class="row justify-content-center" id="section3" style="margin-top: 35px">
 				<div class="col-auto">
-					<h4>Последние новости</h4>
+					<h4>Новости</h4>
 				</div>				
 			</div>
-			<div class="row justify-content-center" style="margin-top: 35px"><!--Блок под новости-->
+			<div class="row justify-content-center" style="margin-top: 35px">
 				<div class="col-12">
+                    @foreach($news as $new)
 					<!-- Один блок-->
 					<div class="row" style="margin-top: 15px">
 						<div class="col-12">
 							<div class="card">
  								<div class="row no-gutters">
-    								<div class="col-md-3">
-      									<img src="{{asset('images/1.png')}}" class="card-img" alt="...">
-    								</div>
-    								<div class="col-md-9">
+    								<div class="col-md-12">
       									<div class="card-body">
       										<div class="row">
       											<div class="col-12">
-      												<h5 class="card-title">Разработка идет полным ходом</h5>
-        											<p class="card-text">Если коротко - сверстали верхушку индекса. На этом мы не остановимся! Ждите новостей...</p>
+      												<h5 class="card-title">{{$new->title}}</h5>
+        											<p class="card-text">{{$new->text}}</p>
       											</div>
       										</div>
         									<div class="row justify-content-between">
         										<div class="col-auto">
-        											<p class="card-text"><small class="text-muted">Опубликовано 3 минуты назад</small></p>
-        										</div>
-        										<div class="col-auto">
-        											<a href="#" role="button" class="btn btn-outline-primary btn-sm">Читать полностью</a>
+        											<p class="card-text"><small class="text-muted">Опубликовано {{$new->created_at}}</small></p>
         										</div>
         									</div>
       									</div>
@@ -199,74 +194,8 @@
 						</div>
 					</div>
 					<!-- Один блок-->
-					<!-- Один блок-->
-					<div class="row" style="margin-top: 15px">
-						<div class="col-12">
-							<div class="card">
- 								<div class="row no-gutters">
-    								<div class="col-md-3">
-      									<img src="{{asset('images/1.png')}}" class="card-img" alt="...">
-    								</div>
-    								<div class="col-md-9">
-      									<div class="card-body">
-      										<div class="row">
-      											<div class="col-12">
-      												<h5 class="card-title">Разработка идет полным ходом</h5>
-        											<p class="card-text">Если коротко - сверстали верхушку индекса. На этом мы не остановимся! Ждите новостей...</p>
-      											</div>
-      										</div>
-        									<div class="row justify-content-between">
-        										<div class="col-auto">
-        											<p class="card-text"><small class="text-muted">Опубликовано 3 минуты назад</small></p>
-        										</div>
-        										<div class="col-auto">
-        											<a href="#" role="button" class="btn btn-outline-primary btn-sm">Читать полностью</a>
-        										</div>
-        									</div>
-      									</div>
-    								</div>
-  								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Один блок-->
-					<!-- Один блок-->
-					<div class="row" style="margin-top: 15px">
-						<div class="col-12">
-							<div class="card">
- 								<div class="row no-gutters">
-    								<div class="col-md-3">
-      									<img src="{{asset('images/1.png')}}" class="card-img" alt="...">
-    								</div>
-    								<div class="col-md-9">
-      									<div class="card-body">
-      										<div class="row">
-      											<div class="col-12">
-      												<h5 class="card-title">Разработка идет полным ходом</h5>
-        											<p class="card-text">Если коротко - сверстали верхушку индекса. На этом мы не остановимся! Ждите новостей...</p>
-      											</div>
-      										</div>
-        									<div class="row justify-content-between">
-        										<div class="col-auto">
-        											<p class="card-text"><small class="text-muted">Опубликовано 3 минуты назад</small></p>
-        										</div>
-        										<div class="col-auto">
-        											<a href="#" role="button" class="btn btn-outline-primary btn-sm">Читать полностью</a>
-        										</div>
-        									</div>
-      									</div>
-    								</div>
-  								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Один блок-->
+                    @endforeach
 				</div>				
-			</div>
-			<div class="row justify-content-center" style="margin-top: 25px;">
-				<div class="col-3">
-					<a href="news.html" role="button" class="btn btn-outline-primary btn-block btn-sm">Еще новости</a>
-				</div>
 			</div>
 		</div>
 	</body>

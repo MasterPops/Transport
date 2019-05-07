@@ -19,7 +19,6 @@ class CreateNewsTable extends Migration
             $table->foreign('user')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
             $table->string('text');
-            $table->string('img')->nullable();;
             $table->timestamps();
         });
     }

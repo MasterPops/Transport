@@ -62,7 +62,7 @@
                                         <h6 class="text-center" style="color: white;">Заказчики</h6>
                                     </a>
                                 </div>
-                                <a role="button" href="trip.html" class="btn btn-outline-primary mobile-buttons btn-block">Заказчики</a>
+                                <a role="button" href="/customers" class="btn btn-outline-primary mobile-buttons btn-block">Заказчики</a>
                                 <div class="col-auto tile">
                                     <a href="/statistic">
                                         <img src="{{asset('images/statistic-icon.png')}}" class="img-tile img-fluid"/>
@@ -138,8 +138,15 @@
                                                 </h6>
                                             </div>
                                         </div>
+                                        @if(Auth::user()->accaunt_type != 1)
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <a role="button" class="btn btn-outline-success btn-block" href="/admin">Панель управления</a>
+                                                </div>
+                                            </div>
+                                        @endif
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-12 mt-3">
                                                 <a role="button" class="btn btn-outline-secondary btn-block" href="/profile">Редактировать профиль</a>
                                             </div>
                                         </div>

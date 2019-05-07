@@ -18,12 +18,5 @@ class AccauntTypeTableSeeder extends Seeder
          $type = new Accaunt_type;
          $type->type = 'Администратор';
          $type->save();
-         $type = new Accaunt_type;
-         $type->type = 'Сотрудник технической поддержки';
-         $type->save();
-         $type = new Accaunt_type;
-         $type->type = 'Модератор';
-         $type->save();
-
     }
 }

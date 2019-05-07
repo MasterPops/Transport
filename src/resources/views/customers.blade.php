@@ -61,7 +61,7 @@
                                         <h6 class="text-center" style="color: white;">Заказчики</h6>
                                     </a>
                                 </div>
-                                <a role="button" href="trip.html" class="btn btn-warning mobile-buttons btn-block">Заказчики</a>
+                                <a role="button" href="/customers" class="btn btn-warning mobile-buttons btn-block">Заказчики</a>
 								<div class="col-auto tile">
 									<a href="/statistic">
 										<img src="{{asset('images/statistic-icon.png')}}" class="img-tile img-fluid"/>

@@ -16,7 +16,7 @@ class CarController extends Controller
 
     public function index()
     {
-    	$cars = Car::where('user', Auth::user()->id)->get();;
+    	$cars = Car::where('user', Auth::user()->id)->get();
         return view('auto')->with('cars', $cars);
     }
 

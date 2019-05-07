@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', 'IndexController@index');
 
 Auth::routes();
 
@@ -42,3 +40,9 @@ Route::post('/customers/del', 'CustomerController@del');
 Route::post('profile/rename', 'EditUser@rename');
 Route::post('profile/repass', 'EditUser@repass');
 Route::post('profile/photo', 'EditUser@photo');
+Route::get('/statistic', 'StatisticController@index');
+Route::get('/admin', 'AdminController@index');
+Route::get('/admin/users', 'AdminController@users');
+Route::get('/admin/support', 'AdminController@support');
+Route::get('/admin/news', 'AdminController@news');
+Route::post('/admin/news/add', 'AdminController@addNews');
