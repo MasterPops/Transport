@@ -76,7 +76,7 @@
 				<div class="col-6" >
                     <div class="card">
   						<div class="card-header">
-    						Статистика за месяц
+    						Статистика за текущий месяц
   						</div>
   						<div class="card-body">
     						<h5 class="card-title">Заработано: {{$sum}} руб</h5>
