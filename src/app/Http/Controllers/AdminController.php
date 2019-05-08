@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\News;
+use App\Ticket;
+use App\Message;
 use Auth;
 
 class AdminController extends Controller
@@ -45,7 +47,8 @@ class AdminController extends Controller
     {
     	if (Auth::user()->accaunt_type == 2)
     	{
-    		return view('admin_support');
+    		$tickets = Ticket::where('status', 1)->orderBy('id','desc')->get();
+    		return view('admin_support')->with('tickets', $tickets);
     	}
     	else
     	{
@@ -87,5 +90,41 @@ class AdminController extends Controller
     		return redirect()->action('HomeController@index');
     	}
         
+    }
+
+    public function openTicket(Request $request)
+    {
+    	if (Auth::user()->accaunt_type == 2)
+    	{
+    		$ticket = Ticket::find($request->id);
+    		$messages = Message::where('ticket', $request->id)->get();
+    		return view('admin_ticket')->with('ticket', $ticket)->with('messages', $messages);
+    	}
+    	else
+    	{
+    		return redirect()->action('HomeController@index');
+    	}
+    }
+
+    public function addMessage(Request $request)
+    {
+    	if (Auth::user()->accaunt_type == 2)
+    	{
+    		$this->validate($request, [
+                    'text' => 'required'
+                ]);
+    		$ticket = Ticket::find($request->id);
+    		$message = new Message();
+    		$message->user = Auth::user()->id;
+			$message->text = $request->text;
+			$message->ticket = $request->id;
+			$message->save();
+			$messages = Message::where('ticket', $request->id)->get();
+    		return view('admin_ticket')->with('ticket', $ticket)->with('messages', $messages);
+    	}
+    	else
+    	{
+    		return redirect()->action('HomeController@index');
+    	}
     }
 }

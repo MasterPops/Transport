@@ -46,3 +46,5 @@ Route::get('/admin/users', 'AdminController@users');
 Route::get('/admin/support', 'AdminController@support');
 Route::get('/admin/news', 'AdminController@news');
 Route::post('/admin/news/add', 'AdminController@addNews');
+Route::get('/admin/support/ticket/{id}', 'AdminController@openTicket');
+Route::post('/admin/ticket/{id}/message/add', 'AdminController@addMessage');

@@ -90,38 +90,60 @@
     								<a class="nav-link active" href="/admin/support">Техническая поддержка</a>
   								</li>
 							</ul>
-							@if(count($tickets) > 0)
-                            	@foreach($tickets as $ticket)
-                                	<div class="row mb-3 mt-3">
-                                    	<div class="col-12">
-                                        	<div class="card">
-                                            	<div class="card-header">
-                                                	<div class="row justify-content-between">
-                                                    	<div class="col-8">
-                                                        	{{$ticket->title}}
-                                                    	</div>
-                                                    	<div class="col-4">
-                                                        	{{$ticket->created_at}}
-                                                    	</div>
-                                                	</div>  
-                                            	</div>
-                                            	<div class="card-body">{{$ticket->text}}</p></div>
-                                            	<div class="card-footer text-muted">
-                                            		<div class="row justify-content-between">
-                                            			<div class="col-9">
-                                            				ID: {{$ticket->getUser['id']}} Имя: {{$ticket->getUser['name']}}
-                                            			</div>
-                                            			<div class="col-3">
-                                            				<a role="button" class="btn btn-primary btn-block" href="/admin/support/ticket/{{$ticket->id}}">Открыть</a>
-                                            			</div>
-                                            		</div>
-                                                	
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="row justify-content-between">
+                                                <div class="col-8">
+                                                    {{$ticket->title}}
                                                 </div>
+                                                <div class="col-4">
+                                                    {{$ticket->created_at}}
+                                                </div>
+                                            </div>  
+                                        </div>
+                                        <div class="card-body">
+                                            <p>{{$ticket->text}}</p>
+                                        </div>
+                                        <div class="card-footer text-muted">
+                                            <div class="row justify-content-between">
+                                                <div class="col-12">
+                                                    ID: {{$ticket->getUser['id']}} Имя: {{$ticket->getUser['name']}}
+                                                </div>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                            </div>
+                            @foreach($messages as $mess)
+                                <div class="row mb-3 justify-content-end">
+                                    <div class="col-11">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        {{$mess->getUser['lastname']}} {{$mess->getUser['name']}}
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                            <div class="card-body">
+                                                <p>{{$mess->text}}</p>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                {{$mess->created_at}}
                                             </div>   
                                         </div>
                                     </div>
-                            	@endforeach
-                            @endif
+                                </div>
+                            @endforeach
+                            <form method="POST" action="/admin/ticket/{{$ticket->id}}/message/add">
+                                @csrf
+                                <div class="form-group">
+                                    <textarea class="form-control mt-3" rows="3" placeholder="Текст сообщения" name="text"></textarea>
+                                    <button type="submit" class="btn btn-primary btn-block mt-3">Отправить</button>
+                                </div>
+                            </form>
 						</div>
 					</div>
 				</div>
