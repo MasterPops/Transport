@@ -47,7 +47,8 @@ class DriverController extends Controller
     {
     	$this->validate($request, [
                     'name' => 'required',
-                    'lastname' => 'required'
+                    'lastname' => 'required',
+                    'patronymic' => 'required'
                 ]);
     	$driver = new Driver();
     	$driver->user = Auth::User()->id;
